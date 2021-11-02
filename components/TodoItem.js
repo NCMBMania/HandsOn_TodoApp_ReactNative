@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, FlatList, Button } from 'react-native';
+import React from 'react';
 import { List, Checkbox } from 'react-native-paper';
 
 export default function TodoItem({ navigation, index, item, updated }) {
     // タスクをチェックした際に呼ばれるアクション
   const checked = ({index, item }) => {
-    // データを更新（フラグを反転）
-    item.set('checked', !item.get('checked'));
-    // 保存
-    item.save();
-    updated({index, item});
   };
   
   // リスト（各行）の表示処理

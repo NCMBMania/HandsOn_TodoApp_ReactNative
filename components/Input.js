@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import { NCMBObject } from './ncmb';
 
 export default function InputTodo(props) {
   // 入力テキスト用
-  const [text, setText] = React.useState('');
+  const [text, setText] = useState('');
 
   // テキストを変更した際のイベント
   const change = (text) => {
@@ -17,12 +17,6 @@ export default function InputTodo(props) {
     if(e.which === 13){
       try {
         // タスクを新規保存します
-        const obj = new NCMBObject('Todo');
-        await obj
-          .set('body', text)
-          .set('checked', false)
-          .save();
-        props.added(obj);
         setText('');
       } catch (e) {
         console.log(e);

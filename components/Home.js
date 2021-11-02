@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
-import { List, Checkbox, Button } from 'react-native-paper';
+import { List, Button } from 'react-native-paper';
 import InputTodo from './Input';
 import { NCMBQuery } from './ncmb';
 import TodoItem from './TodoItem';
@@ -28,14 +28,6 @@ export default function Home({ navigation }) {
 
   // タスクを取得する関数
   const fetchTodo = async () => {
-    // NCMBのTodoクラス（DBでいうテーブル相当）を準備
-    const query = new NCMBQuery("Todo");
-    // 取得する件数
-    query.limit = 100;
-    // データを取得
-    const ary = await query.fetchAll();
-    // 配列にセット
-    setArray(ary);
   };
 
   // 最初に一度だけ実行する処理
@@ -61,9 +53,6 @@ export default function Home({ navigation }) {
   // 完了しているタスクを削除するイベント
   const deleteTask = async () => {
     const promises = ary.map(item => {
-      if (item.get('checked')) {
-        return item.delete();
-      }
     });
     await Promise.all(promises);
     // 改めてデータを取得し直す
